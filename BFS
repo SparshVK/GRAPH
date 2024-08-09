@@ -1,0 +1,89 @@
+Breadth First Search
+---------------------
+
+import java.util.*;
+class Solution {
+    // Function to return Breadth First Traversal of given graph.
+    public ArrayList<Integer> bfsOfGraph(int V, 
+    ArrayList<ArrayList<Integer>> adj) {
+        
+        ArrayList < Integer > bfs = new ArrayList < > ();
+        boolean vis[] = new boolean[V];
+        Queue < Integer > q = new LinkedList < > ();
+
+        q.add(0);
+        vis[0] = true;
+
+        while (!q.isEmpty()) {
+            Integer node = q.poll();
+            bfs.add(node);
+
+            // Get all adjacent vertices of the dequeued vertex s
+            // If a adjacent has not been visited, then mark it
+            // visited and enqueue it
+            for (Integer it: adj.get(node)) {
+                if (vis[it] == false) {
+                    vis[it] = true;
+                    q.add(it);
+                }
+            }
+        }
+
+        return bfs;
+    }
+    
+    public static void main(String args[]) {
+
+        ArrayList < ArrayList < Integer >> adj = new ArrayList < > ();
+        for (int i = 0; i < 5; i++) {
+            adj.add(new ArrayList < > ());
+        }
+        adj.get(0).add(1);
+        adj.get(1).add(0);
+        adj.get(0).add(4);
+        adj.get(4).add(0);
+        adj.get(1).add(2);
+        adj.get(2).add(1);
+        adj.get(1).add(3);
+        adj.get(3).add(1);
+        
+        Solution sl = new Solution(); 
+        ArrayList < Integer > ans = sl.bfsOfGraph(5, adj);
+        int n = ans.size(); 
+        for(int i = 0;i<n;i++) {
+            System.out.print(ans.get(i)+" "); 
+        }
+    }
+}
+
+Explanation
+
+This Java program performs a Breadth First Search (BFS) traversal on a graph represented as an adjacency list. Here's a breakdown of the code:
+
+1. **Importing required libraries**: 
+   - `java.util.*` is imported for using classes like `ArrayList`, `Queue`, and `LinkedList`.
+
+2. **Class Declaration**: 
+   - A class named `Solution` is defined, which contains the BFS function.
+
+3. **BFS Function**: 
+   - **Definition**: `bfsOfGraph(int V, ArrayList<ArrayList<Integer>> adj)` takes the number of vertices `V` and an adjacency list `adj` representing the graph.
+   - **Initialization**:
+     - An `ArrayList<Integer> bfs` is created to store the order of nodes visited during BFS.
+     - A boolean array `vis` is initialized to keep track of visited nodes.
+     - A `Queue<Integer>` is used to facilitate the BFS process.
+   - **Starting BFS**:
+     - The BFS starts from node `0`. It marks this node as visited and adds it to the queue.
+   - **Processing nodes**:
+     - While the queue is not empty:
+       - Dequeue the front node, add it to the BFS list.
+       - For each adjacent vertex of the current node:
+         - If it hasn't been visited, mark it as visited and add it to the queue.
+   - **Return Statement**: After all nodes are processed, the BFS list is returned.
+
+4. **Main Method**:
+   - An adjacency list for a graph with 5 vertices is constructed. The connections are defined by adding edges between nodes (e.g., node 0 connects to node 1 and 4, node 1 connects to node 2 and 3, etc.).
+   - An instance of `Solution` is created and the BFS function is called, storing the result in the `ans` variable.
+   - Finally, the nodes in the order they were visited are printed to the console.
+
+This BFS algorithm ensures that all nodes reachable from the starting node (0 in this case) are visited in breadth-first order.
