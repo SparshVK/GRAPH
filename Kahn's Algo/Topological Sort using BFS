@@ -1,4 +1,4 @@
-Kahn's Algo/ Topological Sort using BFS (Breadth mein Queue...)
+Kahn's Algo OR Topological Sort using BFS (Breadth mein Queue...)
 ---------------------------------------------------------------
 
 import java.util.*;
